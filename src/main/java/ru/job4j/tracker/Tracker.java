@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Класс Tracker обертка над коллекцией. Используется как хранилище для заявок.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com)
+ */
 public class Tracker implements ITracker {
-    /**
-     * Массив для хранение заявок.
-     */
-    private List<Item> items = new ArrayList<>();
 
     /**
      * Константа используемая для генерации случайного id каждой заявки.
@@ -16,8 +17,14 @@ public class Tracker implements ITracker {
     private static final Random RANDOM = new Random();
 
     /**
-     * Метод добавляет заявку в массив заявок.
-     * @param item Новая заявка, котрорую нужно добавить в масиив.
+     * Коллекция для хранение заявок.
+     */
+    private List<Item> items = new ArrayList<>();
+
+
+    /**
+     * Добавляет заявку в систему.
+     * @param item - новая заявка.
      * @return
      */
     public Item add(Item item) {
@@ -27,23 +34,22 @@ public class Tracker implements ITracker {
     }
 
     /**
-     * Метод генерирует уникальный ключ для заявки.
+     * Генерирует уникальный ключ для заявки.
      * Для идентификации каждой заявки создает уникальный ключ.
-     * @return Уникальный ключ.
+     * @return уникальный ключ.
      */
     private String generateId() {
         return String.valueOf(System.currentTimeMillis() + RANDOM.nextLong());
     }
 
     /**
-     * Метод заменет один элемент в массиве - другим.
-     * @param id Уникальный идентификатор элемента который нужно заменить.
-     * @param item Элемент который нужно вставить в массив.
-     * @return Результат замены.
+     * Заменяет заявку в системе по id.
+     * @param id - уникальный идентификатор заменяемой заявки.
+     * @param item - добавляемая заявка.
+     * @return результат замены.
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        if (this.findById(id) != null) {
             for (int index = 0; index < this.items.size(); index++) {
                 if (this.items.get(index).getId().equals(id)) {
                     this.items.set(index, item);
@@ -51,14 +57,13 @@ public class Tracker implements ITracker {
                     break;
                 }
             }
-        }
         return result;
     }
 
     /**
-     * Метод удаляет из массива элемент по уникальному идентификатору.
-     * @param id Уникальный идентификатор.
-     * @return Результат выполнения удаления.
+     * Удаляет из системы заявку по уникальному идентификатору.
+     * @param id - уникальный идентификатор.
+     * @return результат выполнения удаления.
      */
     public boolean delete(String id) {
         boolean result = false;
@@ -73,8 +78,8 @@ public class Tracker implements ITracker {
     }
 
     /**
-     * Метод копирует заполненые ячейки массива items в новый массив и возвращает его.
-     * @return Масиив объектов.
+     * Возвращает все существующие в системе заявки.
+     * @return коллекцию заявок.
      */
     public List<Item> findAll() {
         List<Item> all = new ArrayList<>();
@@ -85,9 +90,9 @@ public class Tracker implements ITracker {
     }
 
     /**
-     * Метод ищет элементы в массиве items по имени и копиркет их в новый массив.
-     * @param name Имя объекта для поиска.
-     * @return Массив объектов.
+     * Ищет заявки в системе по имени.
+     * @param name имя заявки для поиска.
+     * @return коллекция найденных заявок.
      */
     public List<Item> findByName(String name) {
         List<Item> result = new ArrayList<>();
@@ -100,9 +105,9 @@ public class Tracker implements ITracker {
     }
 
     /**
-     * Метод находит элемент в массиве по уникальному идентификатору.
-     * @param id Уникальный идентификатор для поиска.
-     * @return Элемент массива или null, если элемент не найден.
+     * Находит заявки в системе по уникальному идентификатору.
+     * @param id- уникальный идентификатор для поиска.
+     * @return заявка или null, если элемент не найден.
      */
     public Item findById(String id) {
         Item item = null;

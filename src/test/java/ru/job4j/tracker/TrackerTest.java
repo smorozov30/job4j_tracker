@@ -2,14 +2,18 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import ru.job4j.tracker.Item;
-import ru.job4j.tracker.Tracker;
+import static org.junit.Assert.*;
 
+/**
+ * Тест на класс Tracker.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com)
+ * @version 1.0
+ */
 public class TrackerTest {
 
     /**
-     * Проверка метода add().
+     * Тестируем добавление заявки в систему.
      */
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
@@ -21,7 +25,7 @@ public class TrackerTest {
     }
 
     /**
-     * Проверка метода replace().
+     * Тестируем замену заявки в систему с положительным исходом.
      */
     @Test
     public void whenReplaceNameThenReturnNewName() {
@@ -30,21 +34,45 @@ public class TrackerTest {
         tracker.add(previous);
         Item next = new Item("test2");
         next.setId(previous.getId());
-        tracker.replace(previous.getId(), next);
-        assertThat(tracker.findById(previous.getId()).getName(), is("test2"));
+        assertTrue(tracker.replace(previous.getId(), next));
     }
 
     /**
-     * Проверка метода delete().
+     * Тестируем замену заявки в систему с отрицательным исходом.
      */
     @Test
-    public void whenDeleteItemThenTrue() {
+    public void whenReplaceNameThenReturnFalse() {
+        Tracker tracker = new Tracker();
+        Item previous = new Item("test1");
+        tracker.add(previous);
+        String notExistId = "1234";
+        Item next = new Item("test2");
+        next.setId(notExistId);
+        assertFalse(tracker.replace(notExistId, next));
+    }
+
+    /**
+     * Тестируем удаление заявки из системы с положительным исходом.
+     */
+    @Test
+    public void whenDeleteExistItemThenTrue() {
         Tracker tracker = new Tracker();
         Item item = new Item("test1");
         tracker.add(item);
         String id = item.getId();
-        boolean result = tracker.delete(id);
-        assertThat(result, is(true));
+        assertTrue(tracker.delete(id));
+    }
+
+    /**
+     * Тестируем удаление заявки из системы с отрицательным исходом.
+     */
+    @Test
+    public void whenDeleteNotExistItemThenFalse() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("test1");
+        tracker.add(item);
+        String notExistId = "1234";
+        assertFalse(tracker.delete(notExistId));
     }
 
     /**
