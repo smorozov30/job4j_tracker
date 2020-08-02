@@ -4,17 +4,23 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Класс осуществляет действие поиска заявки по имени.
- * @author smorozov30 (sergey.se1ove.morozov@gmail.com).
+ * Класс ищет в системе заявки по имени.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com).
+ * @version 1.0
  */
 public class FindByNameAction extends BaseAction {
 
+    /**
+     * Конструктор класса FindByNameAction.
+     * @param name - имя для меню.
+     */
     protected FindByNameAction(String name) {
         super(name);
     }
 
     /**
-     * Метод ищет заявку по имени, используя метод из класса Tracker.
+     * Ищет в системе заявку по имени.
      * @param input объект класса отвечающий за ввод данных.
      * @param tracker основной класс для работы с заявками.
      * @return результат выполнения добавления.

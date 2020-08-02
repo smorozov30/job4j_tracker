@@ -3,17 +3,23 @@ package ru.job4j.tracker;
 import java.util.function.Consumer;
 
 /**
- * Класс осуществляет действие поиска заявки по id.
- * @author smorozov30 (sergey.se1ove.morozov@gmail.com).
+ * Класс ищет заявку с системе по id.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com).
+ * @version 1.0
  */
 public class FindByIdAction extends BaseAction {
 
+    /**
+     * Конструктор для класса FindByIdAction.
+     * @param name - имя для меню.
+     */
     protected FindByIdAction(String name) {
         super(name);
     }
 
     /**
-     * Метод ищет заявку по id используя метод из класса Tracker.
+     * Ищет заявку в системе по id.
      * @param input объект класса отвечающий за ввод данных.
      * @param tracker основной класс для работы с заявками.
      * @return результат выполнения добавления.
