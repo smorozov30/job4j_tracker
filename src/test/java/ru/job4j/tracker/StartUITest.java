@@ -10,8 +10,17 @@ import java.util.StringJoiner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
+/**
+ * Тест на класс StartUI.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com)
+ * @version 1.0
+ */
 public class StartUITest {
 
+    /**
+     * Тестируем выход из системы хранения заявок.
+     */
     @Test
     public void whenExit() {
         StubInput input = new StubInput(
@@ -22,6 +31,9 @@ public class StartUITest {
         assertThat(action.isCall(), is(true));
     }
 
+    /**
+     * Тестируем вывод меню.
+     */
     @Test
     public void whenPrtMenu() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
