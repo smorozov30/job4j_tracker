@@ -6,26 +6,34 @@ import java.util.function.Consumer;
 
 /**
  * Класс представляет консольное приложение для работы с классом Tracker.
- * @author smorozov30 (sergey.se1ove.morozov@gmail.com).
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com).
+ * @version 1.0
  */
 public class StartUI {
+
+    /**
+     * Переменная для вывода данных с помощью Consumer.
+     */
     private final Consumer<String> output;
 
+    /**
+     *  Конструктор класса StartUI.
+     * @param output
+     */
     public StartUI(Consumer<String> output) {
         this.output = output;
     }
 
     /**
-     * В методе выполняется работа с меню.
-     * Пользователь вводит номер пункта меню и по требованию необходимые данные для выполнения требуемой операции.
-     * @param input объект класса ValidateInput, используется для ввода данных с консоли.
-     * @param tracker объект класса Tracker, является оберткой для массива заявок, используется для работы с заявками.
+     * Выводит на экран меню, принимает ввод пользователя, выполняет выбраное действие.
+     * @param input объект класса, используемый для ввода данных с консоли.
+     * @param tracker объект класса хранения заявок, используется для работы с заявками.
      */
     public void init(Input input, ITracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions, output);
-            output.accept(actions.size() + ". ======== Exit =========");
             int select = input.askInt("Select: ", actions.size());
             UserAction action = actions.get(select);
             run = action.execute(input, tracker, output);
@@ -33,18 +41,19 @@ public class StartUI {
     }
 
     /**
-     * Метод выводит в консоль пункты меню приложения.
+     * Выводит в консоль пункты меню приложения.
      */
     private void showMenu(List<UserAction> actions, Consumer<String> output) {
         System.out.println("========== Menu ==========");
         for (int index = 0; index < actions.size(); index++) {
             output.accept(index + ". " + actions.get(index).name());
         }
+        output.accept(actions.size() + ". ======== Exit =========");
     }
 
     /**
-     * С этого метода начинается работа приложения.
-     * @param args - args.
+     * Старт работы приложения.
+     * @param args - аргументы командной строки.
      */
     public static void main(String[] args) {
         Input input = new ConsoleInput();

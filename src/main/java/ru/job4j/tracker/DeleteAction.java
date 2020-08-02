@@ -3,17 +3,23 @@ package ru.job4j.tracker;
 import java.util.function.Consumer;
 
 /**
- * Класс осуществляет действие удаления заявки.
- * @author smorozov30 (sergey.se1ove.morozov@gmail.com).
+ * Класс удаляет заявку из системы.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com).
+ * @version 1.0
  */
 public class DeleteAction extends BaseAction {
 
+    /**
+     * Конструктор класса DeleteAction.
+     * @param name - имя действия для меню.
+     */
     protected DeleteAction(String name) {
         super(name);
     }
 
     /**
-     * Метод удаляет заявку по id используя метод из класса Tracker.
+     * Удаляет из системы заявку по id.
      * @param input объект класса отвечающий за ввод данных.
      * @param tracker основной класс для работы с заявками.
      * @return результат выполнения добавления.

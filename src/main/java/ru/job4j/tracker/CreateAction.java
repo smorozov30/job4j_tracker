@@ -3,17 +3,23 @@ package ru.job4j.tracker;
 import java.util.function.Consumer;
 
 /**
- * Класс осуществляет действие добавления новой заявки.
- * @author smorozov30 (sergey.se1ove.morozov@gmail.com).
+ * Класс добавляет новую заявку с систему.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com)
+ * @version 1.0
  */
 public class CreateAction extends BaseAction {
 
+    /**
+     * Конструктор класса CreateAction.
+     * @param name - название пункта меню, для данного действия.
+     */
     protected CreateAction(String name) {
         super(name);
     }
 
     /**
-     * Метод добавляет новую заявку используя метод из класса Tracker.
+     * Добавляет новую заявку в систему.
      * @param input объект класса отвечающий за ввод данных.
      * @param tracker основной класс для работы с заявками.
      * @return результат выполнения добавления.
