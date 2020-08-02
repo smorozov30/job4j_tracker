@@ -9,7 +9,17 @@ import java.util.StringJoiner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
+/**
+ * Тест на класс ShowAllAction.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com)
+ * @version 1.0
+ */
 public class ShowAllActionTest {
+
+    /**
+     * Тестируем вывод всех заявок.
+     */
     @Test
     public void whenCheckOutput() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -24,6 +34,22 @@ public class ShowAllActionTest {
                 .add("1 items found:")
                 .add(item.getName())
                 .toString();
+        assertThat(new String(out.toByteArray()), is(expect));
+        System.setOut(def);
+    }
+
+    /**
+     * Тестируем отсутствие заявок.
+     */
+    @Test
+    public void whenNotExistItems() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintStream def = System.out;
+        System.setOut(new PrintStream(out));
+        ITracker tracker = new Tracker();
+        UserAction action = new ShowAllAction("====== All Items ======");
+        action.execute(new StubInput(new String[] {}), tracker, System.out::println);
+        String expect = "No items found" + System.lineSeparator();
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);
     }

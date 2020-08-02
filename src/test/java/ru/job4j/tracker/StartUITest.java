@@ -31,11 +31,13 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI(System.out::println).init(input, new Tracker(), Arrays.asList(action));
+        CreateAction createAction = new CreateAction("==== Create action ====");
+        new StartUI(System.out::println).init(input, new Tracker(), Arrays.asList(action, createAction));
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("========== Menu ==========")
                 .add("0. ===== Stub action =====")
-                .add("1. ======== Exit =========")
+                .add("1. ==== Create action ====")
+                .add("2. ======== Exit =========")
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);

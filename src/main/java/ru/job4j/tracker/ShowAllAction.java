@@ -4,17 +4,23 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Класс осуществляет действие вывода всех заявок.
- * @author smorozov30 (sergey.se1ove.morozov@gmail.com).
+ * Класс выводит все заявки.
+ *
+ * @author Sergey Morozov (morozov.java.job@gmail.com).
+ * @version 1.0
  */
 public class ShowAllAction extends BaseAction {
 
+    /**
+     * Конструктор класса.
+     * @param name - тмя для меню.
+     */
     protected ShowAllAction(String name) {
         super(name);
     }
 
     /**
-     * Метод показывает все заявки используя метод из класса Tracker.
+     * Выводит все заявки.
      * @param input объект класса отвечающий за ввод данных.
      * @param tracker основной класс для работы с заявками.
      * @return результат выполнения добавления.
