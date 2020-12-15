@@ -4,9 +4,15 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Тест на класс CreateAction.
@@ -15,6 +21,19 @@ import static org.junit.Assert.*;
  * @version 1.0
  */
 public class CreateActionTest {
+
+    @Test
+    public void testCreate() {
+        UserAction action = new CreateAction("create action");
+        ITracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Input input = mock(Input.class);
+        when(input.askStr(any(String.class))).thenReturn("New item");
+        List<String> expected = Arrays.asList("Item added");
+        assertTrue(action.execute(input, tracker, output::output));
+        assertThat(tracker.findAll().get(0).getName(), is("New item"));
+        assertEquals(output.getOutput(), expected);
+    }
 
     /**
      * Тестируем добавление заявки в систему.

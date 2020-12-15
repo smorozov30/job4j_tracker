@@ -4,8 +4,13 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Тест на класс FindByIdAction.
@@ -14,6 +19,34 @@ import static org.junit.Assert.*;
  * @version 1.0
  */
 public class FindByIdActionTest {
+
+    @Test
+    public void testFindByIdReturnTrue() {
+        UserAction action = new FindByIdAction("findById action");
+        ITracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Item item = new Item("Any item");
+        tracker.add(item);
+        Input input = mock(Input.class);
+        when(input.askStr(any(String.class))).thenReturn(item.getId());
+        List<String> expected = Arrays.asList("Item found: " + item.getName());
+        assertTrue(action.execute(input, tracker, output::output));
+        assertEquals(output.getOutput(), expected);
+    }
+
+    @Test
+    public void testFindByIdReturnFalse() {
+        UserAction action = new FindByIdAction("findById action");
+        ITracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Item item = new Item("Any item");
+        tracker.add(item);
+        Input input = mock(Input.class);
+        when(input.askStr(any(String.class))).thenReturn("any id");
+        List<String> expected = Arrays.asList("Item not found");
+        assertFalse(action.execute(input, tracker, output::output));
+        assertEquals(output.getOutput(), expected);
+    }
 
     /**
      * Тестируем случай когда заявка найдена.

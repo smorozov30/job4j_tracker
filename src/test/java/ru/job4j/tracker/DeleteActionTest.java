@@ -4,8 +4,14 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Тест на класс DeleteAction.
@@ -14,6 +20,34 @@ import static org.junit.Assert.*;
  * @version 1.0
  */
 public class DeleteActionTest {
+
+    @Test
+    public void testDeleteWhenReturnTrue() {
+        UserAction action = new DeleteAction("delete action");
+        ITracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Item item = new Item("Deleted item");
+        tracker.add(item);
+        Input input = mock(Input.class);
+        when(input.askStr(any(String.class))).thenReturn(item.getId());
+        List<String> expected = Arrays.asList("Item deleted");
+        assertTrue(action.execute(input, tracker, output::output));
+        assertEquals(output.getOutput(), expected);
+    }
+
+    @Test
+    public void testDeleteWhenReturnFalse() {
+        UserAction action = new DeleteAction("delete action");
+        ITracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Item item = new Item("Deleted item");
+        tracker.add(item);
+        Input input = mock(Input.class);
+        when(input.askStr(any(String.class))).thenReturn("any id");
+        List<String> expected = Arrays.asList("Item not found");
+        assertFalse(action.execute(input, tracker, output::output));
+        assertEquals(output.getOutput(), expected);
+    }
 
     /**
      * Тестируем удаление заявки из системы.
