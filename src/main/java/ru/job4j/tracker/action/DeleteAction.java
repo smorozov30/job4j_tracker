@@ -1,4 +1,7 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.action;
+
+import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.io.input.Input;
 
 import java.util.function.Consumer;
 
@@ -14,7 +17,7 @@ public class DeleteAction extends BaseAction {
      * Конструктор класса DeleteAction.
      * @param name - имя действия для меню.
      */
-    protected DeleteAction(String name) {
+    public DeleteAction(String name) {
         super(name);
     }
 

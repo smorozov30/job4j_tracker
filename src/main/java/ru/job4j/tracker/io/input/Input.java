@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.io.input;
 
 /**
  * Интерфейс для классов реализующих ввод данных в систему.

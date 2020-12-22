@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.io.input;
 
 /**
  * Класс для тестирования кода иммитирующий ввод пользователя.

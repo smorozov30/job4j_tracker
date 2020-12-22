@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.io.input.StubInput;
+import ru.job4j.tracker.io.input.ValidateInput;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.hamcrest.MatcherAssert.*;

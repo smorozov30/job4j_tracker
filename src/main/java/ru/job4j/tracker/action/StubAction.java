@@ -1,4 +1,7 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.action;
+
+import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.io.input.Input;
 
 import java.util.function.Consumer;
 

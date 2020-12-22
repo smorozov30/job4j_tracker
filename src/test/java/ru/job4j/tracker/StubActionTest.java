@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.action.StubAction;
+import ru.job4j.tracker.action.UserAction;
+import ru.job4j.tracker.io.input.Input;
+import ru.job4j.tracker.io.input.StubInput;
+import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.store.Tracker;
 
 import static org.junit.Assert.*;
 

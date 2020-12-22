@@ -1,6 +1,15 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.action.DeleteAction;
+import ru.job4j.tracker.action.UserAction;
+import ru.job4j.tracker.io.input.Input;
+import ru.job4j.tracker.io.input.StubInput;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.io.output.Output;
+import ru.job4j.tracker.io.output.StubOutput;
+import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.store.Tracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

@@ -1,4 +1,8 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.action;
+
+import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.io.input.Input;
+import ru.job4j.tracker.model.Item;
 
 import java.util.function.Consumer;
 
@@ -14,7 +18,7 @@ public class ReplaceAction extends BaseAction {
      * Конструктор класса ReplaceAction.
      * @param name - имя для меню.
      */
-    protected ReplaceAction(String name) {
+    public ReplaceAction(String name) {
         super(name);
     }
 
