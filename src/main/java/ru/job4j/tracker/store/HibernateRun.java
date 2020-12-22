@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.tracker.model.NewItem;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class HibernateRun {
@@ -18,6 +19,8 @@ public class HibernateRun {
             NewItem item = create(new NewItem("Learn Hibernate"), sf);
             System.out.println(item);
             item.setName("Learn Hibernate 5.");
+            item.setDescription("Learn Hibernate Description.");
+            item.setCreated( new Timestamp(1459510232000L));
             update(item, sf);
             System.out.println(item);
             NewItem rsl = findById(item.getId(), sf);
