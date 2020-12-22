@@ -5,7 +5,7 @@ import ru.job4j.tracker.io.input.ConsoleInput;
 import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.io.input.ValidateInput;
 import ru.job4j.tracker.store.ITracker;
-import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.TrackerSQL;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,7 +65,7 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        ITracker tracker = new Tracker();
+        ITracker tracker = new TrackerSQL();
         List<UserAction> actions = Arrays.asList(
                                 new CreateAction("= Create a new Item ==="),
                                 new ShowAllAction("====== All Items ======"),
