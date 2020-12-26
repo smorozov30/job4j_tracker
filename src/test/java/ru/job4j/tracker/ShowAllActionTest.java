@@ -5,8 +5,8 @@ import ru.job4j.tracker.action.ShowAllAction;
 import ru.job4j.tracker.action.UserAction;
 import ru.job4j.tracker.io.input.StubInput;
 import ru.job4j.tracker.model.Item;
-import ru.job4j.tracker.store.ITracker;
 import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ public class ShowAllActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Item item = new Item("fix bug");
         tracker.add(item);
         ShowAllAction act = new ShowAllAction("====== All Items ======");
@@ -52,7 +52,7 @@ public class ShowAllActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         UserAction action = new ShowAllAction("====== All Items ======");
         action.execute(new StubInput(new String[] {}), tracker, System.out::println);
         String expect = "No items found" + System.lineSeparator();

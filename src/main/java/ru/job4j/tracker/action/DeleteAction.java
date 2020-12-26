@@ -1,6 +1,6 @@
 package ru.job4j.tracker.action;
 
-import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.io.input.Input;
 
 import java.util.function.Consumer;
@@ -28,7 +28,7 @@ public class DeleteAction extends BaseAction {
      * @return результат выполнения добавления.
      */
     @Override
-    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         String id = input.askStr("Enter id: ");
         boolean result = tracker.delete(id);
         output.accept(result ? "Item deleted" : "Item not found");

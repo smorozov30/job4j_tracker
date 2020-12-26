@@ -5,8 +5,8 @@ import ru.job4j.tracker.action.StubAction;
 import ru.job4j.tracker.action.UserAction;
 import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.io.input.StubInput;
-import ru.job4j.tracker.store.ITracker;
 import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import static org.junit.Assert.*;
 
@@ -34,7 +34,7 @@ public class StubActionTest {
     @Test
     public void execute() {
         Input input = new StubInput(null);
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         StubAction action = new StubAction();
         assertFalse(action.execute(input, tracker, System.out::println));
         assertTrue(action.isCall());

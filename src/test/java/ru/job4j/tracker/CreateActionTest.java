@@ -7,8 +7,8 @@ import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.io.input.StubInput;
 import ru.job4j.tracker.io.output.Output;
 import ru.job4j.tracker.io.output.StubOutput;
-import ru.job4j.tracker.store.ITracker;
 import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -32,7 +32,7 @@ public class CreateActionTest {
     @Test
     public void testCreate() {
         UserAction action = new CreateAction("create action");
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Output output = new StubOutput();
         Input input = mock(Input.class);
         when(input.askStr(any(String.class))).thenReturn("New item");
@@ -48,7 +48,7 @@ public class CreateActionTest {
     @Test
     public void whenAddNewItemThanReturnTrue() {
         Input input = new StubInput(new String[] {"hello"});
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         UserAction userAction = new CreateAction("create item");
         assertTrue(userAction.execute(input, tracker, System.out::println));
     }
@@ -59,7 +59,7 @@ public class CreateActionTest {
     @Test
     public void whenAddNewItemThanOutputOnConsole() {
         Input input = new StubInput(new String[] {"hello"});
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         UserAction userAction = new CreateAction("create item");
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream systemOut = System.out;

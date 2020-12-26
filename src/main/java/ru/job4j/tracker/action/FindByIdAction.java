@@ -1,6 +1,6 @@
 package ru.job4j.tracker.action;
 
-import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.model.Item;
 
@@ -29,7 +29,7 @@ public class FindByIdAction extends BaseAction {
      * @return результат выполнения добавления.
      */
     @Override
-    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         boolean result = false;
         Item item = tracker.findById(input.askStr("Enter id: "));
         if (item != null) {

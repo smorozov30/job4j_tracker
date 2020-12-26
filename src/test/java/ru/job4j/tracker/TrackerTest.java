@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 import ru.job4j.tracker.model.Item;
-import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -20,7 +20,7 @@ public class TrackerTest {
      */
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -32,7 +32,7 @@ public class TrackerTest {
      */
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item previous = new Item("test1");
         tracker.add(previous);
         Item next = new Item("test2");
@@ -45,7 +45,7 @@ public class TrackerTest {
      */
     @Test
     public void whenReplaceNameThenReturnFalse() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item previous = new Item("test1");
         tracker.add(previous);
         String notExistId = "1234";
@@ -59,7 +59,7 @@ public class TrackerTest {
      */
     @Test
     public void whenDeleteExistItemThenTrue() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         String id = item.getId();
@@ -71,7 +71,7 @@ public class TrackerTest {
      */
     @Test
     public void whenDeleteNotExistItemThenFalse() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         String notExistId = "1234";
@@ -83,7 +83,7 @@ public class TrackerTest {
      */
     @Test
     public void whenArrayHasThreeItemThenLength3() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("test1");
         Item second = new Item("test2");
         Item third = new Item("test3");
@@ -100,7 +100,7 @@ public class TrackerTest {
      */
     @Test
     public void whenSecondIdThanNameTest2() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("test1");
         Item second = new Item("test2");
         Item third = new Item("test3");
@@ -117,7 +117,7 @@ public class TrackerTest {
      */
     @Test
     public void whenTwoNamesInArrayThanLength2() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("test1");
         Item second = new Item("test2");
         Item third = new Item("test3");

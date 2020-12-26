@@ -4,7 +4,7 @@ import org.junit.Test;
 import ru.job4j.tracker.action.CreateAction;
 import ru.job4j.tracker.action.StubAction;
 import ru.job4j.tracker.io.input.StubInput;
-import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -31,7 +31,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction();
-        new StartUI(System.out::println).init(input, new Tracker(), Arrays.asList(action));
+        new StartUI(System.out::println).init(input, new MemTracker(), Arrays.asList(action));
         assertThat(action.isCall(), is(true));
     }
 
@@ -48,7 +48,7 @@ public class StartUITest {
         );
         StubAction action = new StubAction();
         CreateAction createAction = new CreateAction("==== Create action ====");
-        new StartUI(System.out::println).init(input, new Tracker(), Arrays.asList(action, createAction));
+        new StartUI(System.out::println).init(input, new MemTracker(), Arrays.asList(action, createAction));
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("========== Menu ==========")
                 .add("0. ===== Stub action =====")

@@ -1,6 +1,6 @@
 package ru.job4j.tracker.action;
 
-import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.io.input.Input;
 
 import java.util.function.Consumer;
@@ -35,7 +35,7 @@ public class StubAction implements UserAction {
      * @return
      */
     @Override
-    public boolean execute(Input input, ITracker tracker, Consumer<String> output) {
+    public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         call = true;
         return false;
     }

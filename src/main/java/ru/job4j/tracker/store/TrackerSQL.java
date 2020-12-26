@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
-public class TrackerSQL implements ITracker, AutoCloseable {
+public class TrackerSQL implements Tracker, AutoCloseable {
     private Connection connection;
     private static final Random RANDOM = new Random();
     private int position = 0;

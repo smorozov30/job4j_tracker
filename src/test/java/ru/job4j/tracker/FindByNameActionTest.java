@@ -8,8 +8,8 @@ import ru.job4j.tracker.io.input.StubInput;
 import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.io.output.Output;
 import ru.job4j.tracker.io.output.StubOutput;
-import ru.job4j.tracker.store.ITracker;
 import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -34,7 +34,7 @@ public class FindByNameActionTest {
     @Test
     public void testFindByNameReturnTrue() {
         UserAction action = new FindByNameAction("findByName action");
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Name item");
         tracker.add(item);
@@ -51,7 +51,7 @@ public class FindByNameActionTest {
     @Test
     public void testFindByNameReturnFalse() {
         UserAction action = new FindByNameAction("findByName action");
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Name item");
         tracker.add(item);
@@ -67,7 +67,7 @@ public class FindByNameActionTest {
      */
     @Test
     public void whenItemNotExistThanReturnFalse() {
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Input input = new StubInput(new String[] {"123456"});
         UserAction action = new FindByNameAction("= Find items by name ==");
         assertFalse(action.execute(input, tracker, System.out::println));
@@ -81,7 +81,7 @@ public class FindByNameActionTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Item item = new Item("fix bug");
         tracker.add(item);
         Input input = new StubInput(new String[] {item.getName()});

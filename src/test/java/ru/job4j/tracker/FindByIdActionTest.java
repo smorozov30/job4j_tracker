@@ -8,8 +8,8 @@ import ru.job4j.tracker.io.input.StubInput;
 import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.io.output.Output;
 import ru.job4j.tracker.io.output.StubOutput;
-import ru.job4j.tracker.store.ITracker;
 import ru.job4j.tracker.store.Tracker;
+import ru.job4j.tracker.store.MemTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -32,7 +32,7 @@ public class FindByIdActionTest {
     @Test
     public void testFindByIdReturnTrue() {
         UserAction action = new FindByIdAction("findById action");
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Any item");
         tracker.add(item);
@@ -46,7 +46,7 @@ public class FindByIdActionTest {
     @Test
     public void testFindByIdReturnFalse() {
         UserAction action = new FindByIdAction("findById action");
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Any item");
         tracker.add(item);
@@ -62,7 +62,7 @@ public class FindByIdActionTest {
      */
     @Test
     public void whenItemExistThanReturnTrue() {
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Item item = new Item("Item");
         tracker.add(item);
         Input input = new StubInput(new String[] {item.getId()});
@@ -75,7 +75,7 @@ public class FindByIdActionTest {
      */
     @Test
     public void whenItemNotExistThanReturnFalse() {
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Input input = new StubInput(new String[] {"123456"});
         UserAction action = new FindByIdAction("find by id");
         assertFalse(action.execute(input, tracker, System.out::println));
@@ -86,7 +86,7 @@ public class FindByIdActionTest {
      */
     @Test
     public void whenADeleteItemThanOutputOnConsole() {
-        ITracker tracker = new Tracker();
+        Tracker tracker = new MemTracker();
         Item item = new Item("Item");
         tracker.add(item);
         Input input = new StubInput(new String[] {item.getId()});

@@ -4,7 +4,7 @@ import ru.job4j.tracker.action.*;
 import ru.job4j.tracker.io.input.ConsoleInput;
 import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.io.input.ValidateInput;
-import ru.job4j.tracker.store.ITracker;
+import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.store.TrackerSQL;
 
 import java.util.Arrays;
@@ -37,7 +37,7 @@ public class StartUI {
      * @param input объект класса, используемый для ввода данных с консоли.
      * @param tracker объект класса хранения заявок, используется для работы с заявками.
      */
-    public void init(Input input, ITracker tracker, List<UserAction> actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions, output);
@@ -65,7 +65,7 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Input validate = new ValidateInput(input);
-        ITracker tracker = new TrackerSQL();
+        Tracker tracker = new TrackerSQL();
         List<UserAction> actions = Arrays.asList(
                                 new CreateAction("= Create a new Item ==="),
                                 new ShowAllAction("====== All Items ======"),
