@@ -1,4 +1,4 @@
-package ru.job4j.tracker.model;
+package ru.job4j.tracker.model.temp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
