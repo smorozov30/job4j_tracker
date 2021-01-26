@@ -11,6 +11,8 @@ public class SpringDI {
         ui.add("Petr Arsentev");
         ui.add("Ivan ivanov");
         ui.print();
+        StartUI another = context.getBean(StartUI.class);
+        another.print();
         ui.consoleInput();
     }
 }
