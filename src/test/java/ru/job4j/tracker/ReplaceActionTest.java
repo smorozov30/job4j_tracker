@@ -11,6 +11,7 @@ import ru.job4j.tracker.io.output.StubOutput;
 import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.store.MemTracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +41,9 @@ public class ReplaceActionTest {
         when(input.askStr("Enter a name to replace: ")).thenReturn("New item name");
         List<String> expected = Arrays.asList("", "", "Item replaced");
         assertTrue(action.execute(input, tracker, output::output));
-        assertThat(tracker.findAll().get(0).getName(), is("New item name"));
+        List<Item> items = new ArrayList<>();
+        tracker.findAll(items::add);
+        assertThat(items.get(0).getName(), is("New item name"));
         assertEquals(output.getOutput(), expected);
     }
 
@@ -56,7 +59,9 @@ public class ReplaceActionTest {
         when(input.askStr("Enter a name to replace: ")).thenReturn("New item name");
         List<String> expected = Arrays.asList("", "Item not found");
         assertFalse(action.execute(input, tracker, output::output));
-        assertThat(tracker.findAll().get(0).getName(), is("Replaced item"));
+        List<Item> items = new ArrayList<>();
+        tracker.findAll(items::add);
+        assertThat(items.get(0).getName(), is("Replaced item"));
         assertEquals(output.getOutput(), expected);
     }
 

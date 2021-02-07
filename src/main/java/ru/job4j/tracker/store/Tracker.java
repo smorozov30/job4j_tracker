@@ -1,6 +1,7 @@
 package ru.job4j.tracker.store;
 
 import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.react.Observe;
 
 import java.util.List;
 
@@ -33,9 +34,8 @@ public interface Tracker {
 
     /**
      * Метод возвращает все заявки системы в виде коллекции.
-     * @return - коллекция заявок.
      */
-    List<Item> findAll();
+    void findAll(Observe<Item> observe);
 
     /**
      * Метод находит заявки по имени и возвращает их в виде коллекции.

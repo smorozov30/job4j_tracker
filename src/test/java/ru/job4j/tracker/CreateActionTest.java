@@ -7,11 +7,13 @@ import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.io.input.StubInput;
 import ru.job4j.tracker.io.output.Output;
 import ru.job4j.tracker.io.output.StubOutput;
+import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.store.MemTracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +40,9 @@ public class CreateActionTest {
         when(input.askStr(any(String.class))).thenReturn("New item");
         List<String> expected = Arrays.asList("Item added");
         assertTrue(action.execute(input, tracker, output::output));
-        assertThat(tracker.findAll().get(0).getName(), is("New item"));
+        List<Item> items = new ArrayList<>();
+        tracker.findAll(items::add);
+        assertThat(items.get(0).getName(), is("New item"));
         assertEquals(output.getOutput(), expected);
     }
 

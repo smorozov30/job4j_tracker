@@ -1,6 +1,7 @@
 package ru.job4j.tracker.store;
 
 import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.react.Observe;
 
 import java.io.InputStream;
 import java.sql.*;
@@ -129,11 +130,9 @@ public class TrackerSQL implements Tracker, AutoCloseable {
 
     /**
      * Метод осуществляет выборку всех элементов из БД.
-     * @return - коллекцию всех заявок в БД.
      */
     @Override
-    public List<Item> findAll() {
-        List<Item> all = new ArrayList<>();
+    public void findAll(Observe<Item> observe) {
         try (PreparedStatement st = connection.prepareStatement("SELECT item_id, name FROM items;")) {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -141,12 +140,11 @@ public class TrackerSQL implements Tracker, AutoCloseable {
                 String name = rs.getString(2);
                 Item temp = new Item(name);
                 temp.setId(id);
-                all.add(temp);
+                observe.receive(temp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return all;
     }
 
     /**

@@ -1,6 +1,7 @@
 package ru.job4j.tracker.store;
 
 import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.react.Observe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,12 +84,10 @@ public class MemTracker implements Tracker {
      * Возвращает все существующие в системе заявки.
      * @return коллекцию заявок.
      */
-    public List<Item> findAll() {
-        List<Item> all = new ArrayList<>();
+    public void findAll(Observe<Item> observe) {
         for (int index = 0; index < this.items.size(); index++) {
-            all.add(this.items.get(index));
+            observe.receive(this.items.get(index));
         }
-        return all;
     }
 
     /**

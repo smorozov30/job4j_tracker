@@ -4,6 +4,9 @@ import org.junit.Test;
 import ru.job4j.tracker.model.Item;
 import ru.job4j.tracker.store.MemTracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -90,7 +93,9 @@ public class TrackerTest {
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        int result = tracker.findAll().size();
+        List<Item> items = new ArrayList<>();
+        tracker.findAll(items::add);
+        int result = items.size();
         int expected = 3;
         assertThat(result, is(expected));
     }

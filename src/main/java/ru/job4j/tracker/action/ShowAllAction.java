@@ -4,6 +4,7 @@ import ru.job4j.tracker.store.Tracker;
 import ru.job4j.tracker.io.input.Input;
 import ru.job4j.tracker.model.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -32,7 +33,8 @@ public class ShowAllAction extends BaseAction {
     @Override
     public boolean execute(Input input, Tracker tracker, Consumer<String> output) {
         boolean result = false;
-        List<Item> items = tracker.findAll();
+        List<Item> items = new ArrayList<>();
+        tracker.findAll(items::add);
         if (items.size() > 0) {
             output.accept(items.size() + " items found:");
             for (Item item : items) {
